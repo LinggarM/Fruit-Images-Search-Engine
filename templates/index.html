@@ -1,0 +1,89 @@
+<html>
+  <head>
+	<title>Fruit Images Search Engine</title>
+	<link rel= "shortcut icon" type= "image/x-icon" href= "{{ url_for('static',filename='images/favicon.ico') }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/main.css') }}">
+  </head>
+  <body>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="{{url_for('static', filename='js/script.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/extention/choices.js') }}"></script>
+	<script>
+	var loadFile = function(event) {
+		var image = document.getElementById('output');
+		image.src = URL.createObjectURL(event.target.files[0]);
+	};
+	</script>
+	<style>
+	.hasil {
+		background: #fff;
+		padding: 10px 20px;
+		border-radius: 34px;
+		box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.15);
+		overflow: hidden;
+	}
+	.product-item {
+	  background-color: white;
+	  padding: 10px;
+	  border: 1px solid #dddddd;
+	  margin-bottom: 30px;
+	  overflow: hidden;
+	}
+	.product-item img {
+	  width: 100%;
+	}
+	.product-item .product-title {
+	  text-align: center
+	  margin: 15px 0;
+	  display: inline-block;
+	  font-weight: 400;
+	  font-size: 18px;
+	}
+	.col-sm-6{
+		position: relative;
+		min-height: 1px;
+		padding-left: 15px;
+		padding-right: 15px;
+		float:left;
+		width: 50%;
+	}
+	</style>
+    <div class="s130">
+      <form method="POST" enctype="multipart/form-data">
+		<h1>Fruit Images Search Engine</h1><br/>
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <button class="btn-search" type="button" onclick="document.getElementById('upload_file').click()">UPLOAD AN IMAGE</button>
+			<input type='file' id="upload_file" name="query_img" accept="image/*" onchange="loadFile(event);" style="display: none;">
+          </div>
+          <div class="input-field second-wrap">
+             <input type="submit" class="btn-search" value="SEARCH"></input>
+          </div>
+        </div>
+		<h5>File Selected : </h5>
+		<p><center></center><img id="output" width="250" /></center></p>
+        <div class="hasil">
+            <h3>Query Image :</h3>
+            {% if query_path %}
+            <img src="{{ query_path }}" width="300px">
+            {% endif %}
+            <h3>Searching Results :</h3>
+            {% for score in scores %}
+			<div class="col-md-4 col-sm-6">
+				<div class="product-item">
+					<img src="{{ score[1] }}">
+					<p class="product-title">{{ score[0] }}</p>
+				</div>
+			</div>
+            {% endfor %}
+		</div>
+      </form>
+    </div>
+  </body>
+</html>
