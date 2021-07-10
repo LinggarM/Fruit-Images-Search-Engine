@@ -52,7 +52,7 @@ python server.py
 ## Screenshots
 
 ### Select the file
-<img src="static/images/screenshot1.png">
+<img src="static/images/screenshot1.PNG">
 
 ### Retrieve images
 <img src="static/images/screenshot2.png">
