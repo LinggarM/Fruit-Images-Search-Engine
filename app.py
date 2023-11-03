@@ -16,29 +16,31 @@ for feature_path in Path("./static/feature").glob("*.npy"):
     img_paths.append(Path("./static/img") / (feature_path.stem + ".jpg"))
 features = np.array(features)
 
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        # Get the query image
         file = request.files['query_img']
 
-        # Save query image
+        # Save query image to "static/uploaded/"
         img = Image.open(file.stream)  # PIL image
         uploaded_img_path = "static/uploaded/" + datetime.now().isoformat().replace(":", ".") + "_" + file.filename
         img.save(uploaded_img_path)
 
         # Run search
         query = fe.extract(img)
-        dists = np.linalg.norm(features-query, axis=1)  # L2 distances to features
+        dists = np.linalg.norm(features-query, axis = 1)  # L2 distances to features
         ids = np.argsort(dists)[:10]  # Top 30 results
         scores = [(dists[id], img_paths[id]) for id in ids]
 
-        return render_template('index.html',
-                               query_path=uploaded_img_path,
-                               scores=scores)
+        # Render the search results
+        return render_template(
+            'index.html',
+            query_path = uploaded_img_path,
+            scores = scores
+        )
     else:
         return render_template('index.html')
-
 
 if __name__=="__main__":
     app.run("0.0.0.0")

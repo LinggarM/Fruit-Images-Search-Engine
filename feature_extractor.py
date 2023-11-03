@@ -3,12 +3,16 @@ from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.models import Model
 import numpy as np
 
-# See https://keras.io/api/applications/ for details
-
 class FeatureExtractor:
     def __init__(self):
-        base_model = VGG16(weights='imagenet')
-        self.model = Model(inputs=base_model.input, outputs=base_model.get_layer('fc1').output)
+        """
+        Constructor to create the model/ architecture of the feature extractor
+        """
+        base_model = VGG16(weights = 'imagenet')
+        self.model = Model(
+            inputs = base_model.input, 
+            outputs = base_model.get_layer('fc1').output
+        )
 
     def extract(self, img):
         """
