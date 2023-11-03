@@ -1,71 +1,93 @@
 # Fruit-Images-Search-Engine
-<b>Content Based Image Retrieval (CBIR)</b> Applications of <b>Information Retrieval</b> with Fruit Images.
+<b>Content-Based Image Retrieval (CBIR)</b> Applications of <b>Information Retrieval</b> with Fruit Images.
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#description">Description</a><li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#dependencies">Dependencies</a></li>
-        <li><a href="#executing-program">Executing program</a></li>
-      </ul>
-    </li>
-    <li><a href="#screenshots">Screenshots</a></li>
-    <li><a href="#authors">Authors</a></li>
-    <li><a href="#version-history">Version History</a></li>
-    <li><a href="#license">License</a></li>
-  </ol>
-</details>
+## About the Project
 
-## Description
+This is a web-based search engine program of Information Retrieval or **Content-Based Image Retrieval (CBIR)** application to search the most similar fruit images based on an uploaded image.
 
-This is a web-based search engine program of Information Retrieval or Content Based Image Retrieval (CBIR) application to search the most similar fruit images based on an uploaded image. The result will also shown the euclidean distance between uploaded image and the result image. This program is created with Flask using Python programming language.
+The result will also show the **Euclidean distance** between the uploaded image (query) and the resulting images.
 
-## Getting Started
+This program is created with Flask using Python programming language.
 
-### Dependencies
-
-* Numpy
-* Pillow
-* Flask
-* Tensorflow
-
-### Executing program
-
-1. Intall all requirements needed by runnning this command :
-```
-pip install -r requirements.txt
-```
-2. Put all fruit images dataset that you want to add in `static/img` folder
-3. Do the feature extraction to the images dataset by executing this command :
-```
-python offline.py
-```
-5. Run Flask by executing this command :
-```
-python server.py
-```
-3. Open Given URL (Usually `127.0.0.1:5000` or `localhost:5000`)
+Files informations:
+* **app.py**: flask server
+* **feature_extractor.py**: a Feature Extractor module to extract image features using VGG16 architecture, either training images or query image
+* **feature_extraction.py**: run this file to extract features of new training images. Copy and paste your new training images into "static/img" folder, run **feature_extraction.py**, and the features will be saved in "static/feature" folder
 
 ## Screenshots
 
-### Select the file
-<img src="static/images/screenshot1.PNG">
+### Dashboard
+![Screenshots/1.%20Dashboard.png](Screenshots/1.%20Dashboard.png)
 
-### Retrieve images
-<img src="static/images/screenshot2.png">
+### Upload an image as a query (You can use any files from "/Testing Images" folder)
+![Screenshots/2.%20Upload%20a%20File.png](Screenshots/2.%20Upload%20a%20File.png)
 
-## Authors
+### Search results (The number is the distance from query to each search result)
+![Screenshots/3.%20Search%20Result.png](Screenshots/3.%20Search%20Result.png)
 
-* Linggar Maretva Cendani - [Linggar Maretva Cendani](https://linggar.me) - [linggarmc@gmail.com](mailto:linggarmc@gmail.com)
+## Live Demo
+Web App **Fruit Images Search Engine**: [http://xxx.xxx](http://xxx.xxx)
 
-## Version History
+## Technology Used
+* HTML
+* CSS
+* Javascript
+* Python
+* Numpy
+* Tensorflow
+* Pillow
+* Flask
 
-* 0.1
-    * Initial Release
+## Installation
+
+1. Clone this repo
+   ```sh
+   git clone https://github.com/LinggarM/Fruit-Images-Search-Engine
+   ```
+2. Open the repo folder you have cloned in your PC
+3. Create a virtual environment
+   ```sh
+   python -m venv myenv
+   ```
+4. Activate the virtual environment
+   ```sh
+   myenv/Scripts/activate or "myenv/Scripts/activate" (Windows)
+   myenv/bin/activate (Linux)
+   ```
+5. Install the requirements/ dependencies
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+## Usage (Tutorials)
+
+1. Put all of the fruit image datasets that you want to add in the "static/img" folder
+2. Open CMD in Repository Folder
+3. Do the feature extraction to the image datasets by executing this command :
+  ```
+  python feature_extraction.py
+  ```
+4. The features of new image datasets would be saved on "static/feature" folder
+4. Run the web app by executing this command :
+   ```
+   python app.py
+   ```
+   or :
+   ```
+   run Flask
+   ```
+3. Open the given URL
+   ```
+   http://127.0.0.1:5000/
+   ```
+4. Upload any fruit image files as the query image, but make sure the fruit exists in the database in order to get a good result. You can use images in "Testing Images" folder
+
+## Contributors
+* [Linggar Maretva Cendani](https://github.com/LinggarM) - [linggarmc@gmail.com](mailto:linggarmc@gmail.com)
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+* [Colorlib](https://colorlib.com/) for HTML templates
+* [https://github.com/DanielaLFreire/sis-master](https://github.com/DanielaLFreire/sis-master) as the source code for this project
