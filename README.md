@@ -90,4 +90,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 * [Colorlib](https://colorlib.com/) for HTML templates
-* [https://github.com/DanielaLFreire/sis-master](https://github.com/DanielaLFreire/sis-master) as the source code for this project
+* [https://github.com/matsui528/sis](https://github.com/matsui528/sis) as the source code for this project
